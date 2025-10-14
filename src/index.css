@@ -94,7 +94,7 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
 }
-/ input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button {
   background-color: transparent;
   opacity: 1;
 }
