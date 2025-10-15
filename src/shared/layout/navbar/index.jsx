@@ -103,8 +103,8 @@ const Navbar = () => {
                   />
                   <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
                     <img
-                      src="/src/assets/search (1).png"
-                      alt="Search"
+                      src="/assets/search (1).png"
+                     
                       className="h-7 w-7 sm:h-5 sm:w-4"
                     />
                   </div>
@@ -118,8 +118,8 @@ const Navbar = () => {
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black bg-transparent"
                     >
                       <img
-                        src="/src/assets/wishlist (2).png"
-                        alt="Wishlist"
+                        src="src/assets/wishlist (2).png"
+                       
                         className="h-5 w-5 sm:h-6 sm:w-6"
                         style={{ background: "transparent" }}
                       />
@@ -136,8 +136,8 @@ const Navbar = () => {
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black"
                     >
                       <img
-                        src="/src/assets/Cart1@2x.png"
-                        alt="Cart"
+                        src="src/assets/Cart1@2x.png"
+                       
                         className="h-5 w-5 sm:h-6 sm:w-6"
                       />
                       {cart && cart.length > 0 && (
@@ -153,7 +153,7 @@ const Navbar = () => {
                       className="p-1 sm:p-2 text-gray-600 hover:text-black bg-transparent rounded"
                       aria-label="Profile"
                     >
-                      <PersonOutlineIcon style={{ fontSize: 22 }} />
+                      <PersonOutlineIcon style={{ fontSize: 25 }} />
                     </button>
 
                     {showProfileMenu && (
