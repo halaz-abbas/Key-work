@@ -34,7 +34,7 @@ const ContactForm = () => {
             <Link to="/" className="hover:underline text-black">
               Home
             </Link>{" "}
-            /<span className="text-black font-semibold">Contact</span>
+            <span className="text-black font-semibold">Contact</span>
           </nav>
         </div>
       </div>
@@ -42,7 +42,7 @@ const ContactForm = () => {
         <div className="flex flex-col gap-6 border border-gray-300 rounded-lg p-6">
           <div className="flex items-center gap-3 pl-10">
             <img
-              src="\imges\icons-phone.png"
+              src="/src/assets/icons-phone@2x.png"
               alt="Call Icon"
               className="w-9 h-9"
             />
@@ -65,7 +65,7 @@ const ContactForm = () => {
 
           <div className="flex items-center gap-3 pl-10">
             <img
-              src="\imges\icons-mail.png"
+              src="/src/assets/icons-mail.png"
               alt="Mail Icon"
               className="w-10 h-10"
             />

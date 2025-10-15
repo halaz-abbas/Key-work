@@ -17,9 +17,9 @@ const OurStory = () => {
         </p>
       </div>
 
-      <div className="md:w-1/2 bd-2">
+      <div className="md:w-1/2 bd-2 p-0 m-0 right-0">
         <img
-          src="\imges\portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png"
+          src="/src/assets/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1 (1).png"
           alt="Our Story"
           className="w-full rounded-lg object-cover"
         />

@@ -5,14 +5,14 @@ const team = [
   {
     name: "Tom Cruise",
     role: "Founder & Chairman",
-    img: "/imges/image 46.png",
+    img: "/src/assets/image 46.png",
   },
   {
     name: "Emma Watson",
     role: "Managing Director",
-    img: "/imges/image 51 (1).png",
+    img: "/src/assets/image 51.png",
   },
-  { name: "Will Smith", role: "Product Designer", img: "/imges/image 47.png" },
+  { name: "Will Smith", role: "Product Designer", img: "/src/assets/image 47.png" },
 ];
 
 const TeamSection = () => {

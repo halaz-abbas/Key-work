@@ -20,7 +20,7 @@ return (
 <> 
 <Navbar /> 
 <div className="flex-1 flex flex-col min-h-screen bg-white"> 
-  <main className="flex-grow pt-[112px]"> 
+  <main className="flex-grow pt-[0px]"> 
     {children} 
     <SearchModal
             isOpen={isSearchOpen}

@@ -131,15 +131,13 @@ export default function NewArrival() {
           justifyContent: "space-between",
         }}
       >
-        {/* Main Image */}
         {renderImageBox(
-          "\\imges\\ps5-slim-goedkope-playstation_large 1.png",
+          "/src/assets/ps5-slim-goedkope-playstation_large 1@2x.png",
           "PlayStation 5",
           "Black and White version of the PS5 coming out on sale.",
           14
         )}
 
-        {/* Right Column */}
         <Box
           sx={{
             flex: 1,
@@ -149,7 +147,7 @@ export default function NewArrival() {
           }}
         >
           {renderImageBox(
-            "imges\\attractive-woman-wearing-hat-posing-black-background 1.png",
+            "/src/assets/attractive-woman-wearing-hat-posing-black-background 1.png",
             "Women's Collection",
             "Featured woman collections that give you another vibe.",
             13
@@ -157,13 +155,13 @@ export default function NewArrival() {
 
           <Box sx={{ display: "flex", gap: 3, flex: 1 }}>
             {renderImageBox(
-              "/imges/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2x.png",
+              "/src/assets/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2x.png",
               "Speakers",
               "Amazon wireless speakers.",
               12
             )}
             {renderImageBox(
-              "/imges/652e82cd70aa6522dd785109a455904c@2x.png",
+              "/src/assets/652e82cd70aa6522dd785109a455904c.png",
               "Perfume",
               "GUCCI INTENSE OUD EDP",
               12

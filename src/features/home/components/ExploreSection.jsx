@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Box,
-  Typography,
-  Button,
-  IconButton,
-  useMediaQuery,
-} from "@mui/material";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 import Product from "../components/Product";
 
 function ExploreSection() {
@@ -76,54 +69,65 @@ function ExploreSection() {
         </Typography>
       </Box>
 
-    
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        flexWrap="wrap"
+        flexWrap={isSmall ? "wrap" : "nowrap"}
         gap={2}
         mb={3}
       >
-        <Typography variant="h5" fontWeight="bold">
-          Explore Our Products
-        </Typography>
-
-        <Box display="flex" alignItems="center" gap={1}>
-          <IconButton onClick={prevPage} sx={{
-            width: 36,
-            height: 36,
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 2,
-            "&:hover": {
-              borderColor: "#f44336",
-              color: "#f44336",
-              transform: "scale(1.1)",
-            },
-          }}>
-            <ArrowBackIosNew fontSize="small" />
-          </IconButton>
-          <IconButton onClick={nextPage} sx={{
-            width: 36,
-            height: 36,
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: 2,
-            "&:hover": {
-              borderColor: "#f44336",
-              color: "#f44336",
-              transform: "scale(1.1)",
-            },
-          }}>
-            <ArrowForwardIos fontSize="small" />
-          </IconButton>
+        <Box display="flex" alignItems="center" gap={isSmall ? 1 : 0}>
+          <Typography variant="h5" fontWeight="bold">
+            Explore Our Products
+          </Typography>
+          {isSmall && (
+            <Box display="flex" alignItems="center" gap={1}>
+              <button
+                onClick={prevPage}
+                className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+                  hover:border-red-400 hover:text-red-500 hover:scale-105"
+              >
+                ◀
+              </button>
+              <button
+                onClick={nextPage}
+                className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+                  hover:border-red-400 hover:text-red-500 hover:scale-105"
+              >
+                ▶
+              </button>
+            </Box>
+          )}
         </Box>
+
+        {!isSmall && (
+          <Box display="flex" alignItems="center" gap={1}>
+            <button
+              onClick={prevPage}
+              className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+                hover:border-red-400 hover:text-red-500 hover:scale-105"
+            >
+              ◀
+            </button>
+            <button
+              onClick={nextPage}
+              className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+                hover:border-red-400 hover:text-red-500 hover:scale-105"
+            >
+              ▶
+            </button>
+          </Box>
+        )}
       </Box>
 
       {loading ? (
-        <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={3}>
-          {[...Array(8)].map((_, i) => (
+        <Box
+          display="grid"
+          gridTemplateColumns={isSmall ? "repeat(2, 1fr)" : "repeat(4, 1fr)"}
+          gap={3}
+        >
+          {[...Array(productsPerPage)].map((_, i) => (
             <Box key={i} sx={{ width: "100%", height: 250, bgcolor: "#eee", borderRadius: 2 }} />
           ))}
         </Box>
@@ -138,33 +142,33 @@ function ExploreSection() {
             exit="exit"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gridTemplateColumns: isSmall
+                ? "repeat(auto-fit, minmax(140px, 1fr))"
+                : "repeat(auto-fit, minmax(200px, 1fr))",
               gap: "24px",
             }}
           >
-            
             {visibleProducts.map((item) => (
-  <Product
-    key={item.id}
-    id={item.id}
-    title={item.title}
-    image={item.images?.[0] || "/placeholder.png"}
-    price={item.price}
-    rating={4.5}
-    ratingCount={65}
-  />
-))}
+              <Product
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                image={item.images?.[0] || "/placeholder.png"}
+                price={item.price}
+                rating={4.5}
+                ratingCount={65}
+              />
+            ))}
           </motion.div>
         </AnimatePresence>
       )}
 
-     
       <Box textAlign="center" mt={5}>
         <Button
           variant="contained"
           color="error"
           sx={{ px: 5, py: 1.5, fontSize: "1rem", borderRadius: 2 }}
-          onClick={() => window.location.href = "/products"}
+          onClick={() => (window.location.href = "/products")}
         >
           View All Products
         </Button>

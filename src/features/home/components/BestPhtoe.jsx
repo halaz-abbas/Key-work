@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 export default function BestPhtoe({
   imageSrc,
@@ -21,7 +21,6 @@ export default function BestPhtoe({
         className="bg-black text-white shadow-2xl p-4 sm:p-8 md:p-12 flex flex-col md:flex-row-reverse items-center gap-4 sm:gap-6 md:gap-12"
         dir="ltr"
       >
-        {/* ✅ صورة مع أنيميشن */}
         <motion.div
           className="w-full md:w-1/2 flex-shrink-0 overflow-hidden flex items-center justify-center relative"
           initial={{ opacity: 0, x: 80, scale: 0.9 }}
@@ -37,7 +36,10 @@ export default function BestPhtoe({
           }}
         >
           <motion.img
-            src={imageSrc || "/imges/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"}
+            src={
+              imageSrc ||
+              "src/assets/imges/JBL_BOOMBOX_2_HERO_020_x1 (1) 1 (3).png"
+            }
             alt="card"
             className="w-full h-auto md:h-70 lg:h-92 object-cover rounded-lg shadow-lg"
             whileHover={{ scale: 1.08 }}
@@ -45,7 +47,6 @@ export default function BestPhtoe({
           />
         </motion.div>
 
-        {/* ✅ النصوص والمحتوى */}
         <div className="flex-1 w-full flex flex-col justify-between mt-4 md:mt-0">
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-left mb-3 sm:mb-5 md:mb-7"
@@ -70,7 +71,6 @@ export default function BestPhtoe({
               </span>
             </div>
 
-            {/* ✅ الدوائر مع أنيميشن تتابعي */}
             <motion.div
               className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 mb-4"
               initial="hidden"

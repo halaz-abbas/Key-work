@@ -1,13 +1,7 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Box,
-  Typography,
-  Button,
-  IconButton,
-  useMediaQuery,
-} from "@mui/material";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 import Product from "../components/Product";
 
 function FlashSales() {
@@ -151,43 +145,22 @@ function FlashSales() {
           </Box>
         </Box>
 
+        {/* Arrows */}
         <Box display="flex" alignItems="center" gap={1} mt={isSmall ? 2 : 0}>
-          <IconButton
+          <button
             onClick={prevPage}
-            sx={{
-              width: 40,
-              height: 40,
-              backgroundColor: "#fff",
-              border: "1px solid #ccc",
-              borderRadius: "50%",
-              "&:hover": {
-                borderColor: "#f44336",
-                color: "#f44336",
-                transform: "scale(1.1)",
-                backgroundColor: "#fff",
-              },
-            }}
+            className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+              hover:border-red-400 hover:text-red-500 hover:scale-105"
           >
-            <ArrowBackIosNew fontSize="small" />
-          </IconButton>
-          <IconButton
+            ◀
+          </button>
+          <button
             onClick={nextPage}
-            sx={{
-              width: 40,
-              height: 40,
-              backgroundColor: "#fff",
-              border: "1px solid #ccc",
-              borderRadius: "50%",
-              "&:hover": {
-                borderColor: "#f44336",
-                color: "#f44336",
-                transform: "scale(1.1)",
-                backgroundColor: "#fff",
-              },
-            }}
+            className="w-8 h-8 flex items-center justify-center border border-gray-300 bg-white rounded-lg text-gray-700 text-sm transition-all duration-300
+              hover:border-red-400 hover:text-red-500 hover:scale-105"
           >
-            <ArrowForwardIos fontSize="small" />
-          </IconButton>
+            ▶
+          </button>
         </Box>
       </Box>
 
