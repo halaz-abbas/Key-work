@@ -4,6 +4,9 @@ import { Menu, X } from "lucide-react";
 import { useCartStore } from "../../../features/cart/store/cartStore";
 import { useWishlistStore } from "../../../features/wishlist/store/wishlistStore";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import img from "/src/assets/wishlist (2).png";
+import img2 from "/src/assets/search (1).png";
+
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -103,7 +106,7 @@ const Navbar = () => {
                   />
                   <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
                     <img
-                      src="/assets/search (1).png"
+                      src={img2}
                      
                       className="h-7 w-7 sm:h-5 sm:w-4"
                     />
@@ -118,7 +121,7 @@ const Navbar = () => {
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black bg-transparent"
                     >
                       <img
-                        src="src/assets/wishlist (2).png"
+                        src={img}
                        
                         className="h-5 w-5 sm:h-6 sm:w-6"
                         style={{ background: "transparent" }}
