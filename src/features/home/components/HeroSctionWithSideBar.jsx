@@ -106,7 +106,7 @@ const HeroBanner = () => {
       text: "Gaming & Tech Deals",
     },
     {
-      img: "/src/assets/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png",
+      img: "src/assets/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png",
       title: "Beauty & new style",
       subtitle: "elegent details",
       text: "Save Big Now",
