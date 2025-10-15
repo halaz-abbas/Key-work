@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronRight, Menu } from "lucide-react";
 import heroImage from "../../../assets/hero.png";
+import imgz from "../../../assets/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -106,7 +107,7 @@ const HeroBanner = () => {
       text: "Gaming & Tech Deals",
     },
     {
-      img: "src/assets/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag 1.png",
+      img: imgz,
       title: "Beauty & new style",
       subtitle: "elegent details",
       text: "Save Big Now",
