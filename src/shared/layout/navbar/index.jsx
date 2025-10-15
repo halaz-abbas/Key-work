@@ -4,8 +4,8 @@ import { Menu, X } from "lucide-react";
 import { useCartStore } from "../../../features/cart/store/cartStore";
 import { useWishlistStore } from "../../../features/wishlist/store/wishlistStore";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import img from "/src/assets/wishlist (2).png";
-import img2 from "/src/assets/search (1).png";
+import img from "../../../assets/wishlist (2).png";
+import img2 from "../../../assets/search (1).png";
 
 
 const Navbar = () => {
