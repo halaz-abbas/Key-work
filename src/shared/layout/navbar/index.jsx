@@ -229,7 +229,7 @@ const Navbar = () => {
                 <div className="md:hidden flex items-center">
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="bg-white p-2 rounded"
+                    className="bg-white p-1 rounded"
                   >
                     {isMenuOpen ? (
                       <X size={24} color="black" />
@@ -243,7 +243,7 @@ const Navbar = () => {
           </div>
 
           {isMenuOpen && (
-            <div className="md:hidden bg-white border-t px-4 py-4 space-y-4">
+            <div className="md:hidden bg-white border-t px-3 py-3 space-y-3">
               <Link
                 to="/"
                 onClick={() => setIsMenuOpen(false)}
