@@ -1,5 +1,12 @@
 import React from "react";
 import imgsend from "../../../assets/icon-send.png";
+import imgqr from "../../../assets/Qr Code.png";
+import imgt from "../../../assets/AppStore.png";
+import imgn from "../../../assets/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo (2).png";
+import img1 from "../../../assets/Icon-Linkedin.png";
+import imga from "../../../assets/icon-instagram.png";
+import imgg from "../../../assets/Icon-Twitter.png";
+import imgj from "../../../assets/Icon-Facebook.png";
 
 const Footer = () => {
   return (
@@ -61,20 +68,20 @@ const Footer = () => {
             <div className="flex gap-4">
             
               <div className="w-[64px] h-[64px] bg-white flex items-center justify-center">
-                <img src="../../../assets/Qr Code.png" alt="QR Code" className="w-full h-full" />
+                <img src={imgqr} alt="QR Code" className="w-full h-full" />
               </div>
             
               <div className="flex flex-col gap-2">
-                <img src="../../../assets/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo (2).png" alt="Google Play" className="w-[120px] h-auto" />
-                <img src="../../../assets/AppStore.png" alt="App Store" className="w-[120px] h-auto" />
+                <img src={imgn} alt="Google Play" className="w-[120px] h-auto" />
+                <img src={imgt} alt="App Store" className="w-[120px] h-auto" />
               </div>
             </div>
 
             <div className="flex gap-4 pt-4">
-              <img src="../../../assets/Icon-Facebook.png" alt="Facebook" className="w-6 h-6" />
-              <img src="../../../assets/Icon-Twitter.png" alt="Twitter" className="w-6 h-6" />
-              <img src="../../../assets/icon-instagram.png" alt="Instagram" className="w-6 h-6" />
-              <img src="../../../assets/Icon-Linkedin.png" alt="LinkedIn" className="w-6 h-6" />
+              <img src={imgj} alt="Facebook" className="w-6 h-6" />
+              <img src={imgg} alt="Twitter" className="w-6 h-6" />
+              <img src={imga} alt="Instagram" className="w-6 h-6" />
+              <img src={img1} alt="LinkedIn" className="w-6 h-6" />
             </div>
           </div>
         </div>
