@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { motion } from "framer-motion";
+import imgR from "../../../assets/imges/JBL_BOOMBOX_2_HERO_020_x1 (1) 1 (3).png";
 
 export default function BestPhtoe({
   imageSrc,
@@ -36,9 +37,9 @@ export default function BestPhtoe({
           }}
         >
           <motion.img
-            src={
-              imageSrc ||
-              "../../../assets/imges/JBL_BOOMBOX_2_HERO_020_x1 (1) 1 (3).png"
+            src={imgR
+            
+      
             }
             alt="card"
             className="w-full h-auto md:h-70 lg:h-92 object-cover rounded-lg shadow-lg"

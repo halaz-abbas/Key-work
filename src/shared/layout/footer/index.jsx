@@ -1,4 +1,5 @@
 import React from "react";
+import imgsend from "../../../assets/icon-send.png";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
                 className="w-full px-4 py-3 border border-white bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
               />
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 transtion-colors">
-                <img src="../../../assets/icon-send.png" alt="Send" className="w-4 h-4" />
+                <img src={imgsend} alt="Send" className="w-4 h-4" />
               </button>
             </div>
           </div>
