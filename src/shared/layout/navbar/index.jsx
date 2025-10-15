@@ -6,7 +6,7 @@ import { useWishlistStore } from "../../../features/wishlist/store/wishlistStore
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import img from "../../../assets/wishlist (2).png";
 import img2 from "../../../assets/search (1).png";
-
+import img3 from "../../../assets/Cart1@2x.png";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -139,7 +139,7 @@ const Navbar = () => {
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black"
                     >
                       <img
-                        src="src/assets/Cart1@2x.png"
+                        src={img3}
                        
                         className="h-5 w-5 sm:h-6 sm:w-6"
                       />
