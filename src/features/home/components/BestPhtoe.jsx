@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { motion } from "framer-motion";
@@ -37,10 +36,7 @@ export default function BestPhtoe({
           }}
         >
           <motion.img
-            src={imgR
-            
-      
-            }
+            src={imgR}
             alt="card"
             className="w-full h-auto md:h-70 lg:h-92 object-cover rounded-lg shadow-lg"
             whileHover={{ scale: 1.08 }}

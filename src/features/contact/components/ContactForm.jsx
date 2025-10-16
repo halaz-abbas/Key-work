@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
+import imgc from "../../../assets/icons-phone@2x.png";
+import imgi from "../../../assets/icons-mail.png";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -42,7 +44,7 @@ const ContactForm = () => {
         <div className="flex flex-col gap-6 border border-gray-300 rounded-lg p-6">
           <div className="flex items-center gap-3 pl-10">
             <img
-              src="/src/assets/icons-phone@2x.png"
+              src={imgc}
               alt="Call Icon"
               className="w-9 h-9"
             />
@@ -65,7 +67,7 @@ const ContactForm = () => {
 
           <div className="flex items-center gap-3 pl-10">
             <img
-              src="/src/assets/icons-mail.png"
+              src={imgi}
               alt="Mail Icon"
               className="w-10 h-10"
             />

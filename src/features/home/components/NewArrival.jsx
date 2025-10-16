@@ -1,12 +1,11 @@
-import React from "react";
 import { Box, Typography, Button, Grid } from "@mui/material";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import imgq from "../../../assets/ps5-slim-goedkope-playstation_large 1@2x.png";
-import imgx from  "../../../assets/attractive-woman-wearing-hat-posing-black-background 1.png";
-import img9 from  "../../../assets/652e82cd70aa6522dd785109a455904c.png";
-import imgl from  "../../../assets/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2x.png";
+import imgx from "../../../assets/attractive-woman-wearing-hat-posing-black-background 1.png";
+import img9 from "../../../assets/652e82cd70aa6522dd785109a455904c.png";
+import imgl from "../../../assets/69-694768_amazon-echo-png-clipart-transparent-amazon-echo-png 1@2x.png";
 export default function NewArrival() {
   const renderImageBox = (src, alt, text, fontSize) => (
     <Box
@@ -157,18 +156,8 @@ export default function NewArrival() {
           )}
 
           <Box sx={{ display: "flex", gap: 3, flex: 1 }}>
-            {renderImageBox(
-             imgl,
-              "Speakers",
-              "Amazon wireless speakers.",
-              12
-            )}
-            {renderImageBox(
-             img9,
-              "Perfume",
-              "GUCCI INTENSE OUD EDP",
-              12
-            )}
+            {renderImageBox(imgl, "Speakers", "Amazon wireless speakers.", 12)}
+            {renderImageBox(img9, "Perfume", "GUCCI INTENSE OUD EDP", 12)}
           </Box>
         </Box>
       </Box>
