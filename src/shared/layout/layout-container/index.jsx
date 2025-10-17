@@ -1,7 +1,9 @@
 import Navbar from "../navbar";
 import Footer from "../footer";
 import { useState, useEffect } from "react";
-import SearchModal from "../../../features/search/components/SearchModal";
+import SearchModal from "../../../features/search/components/SearchS";
+import { SearchSlashIcon } from "lucide-react";
+import SearchS from "../../../features/search/components/SearchS";
 export default function LayoutContainer({ children }) {
 
 const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -22,7 +24,7 @@ return (
 <div className="flex-1 flex flex-col min-h-screen bg-white"> 
   <main className="flex-grow pt-[0px]"> 
     {children} 
-    <SearchModal
+    <SearchS
             isOpen={isSearchOpen}
             onClose={() => setIsSearchOpen(false)}
           />
