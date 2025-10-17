@@ -5,7 +5,7 @@ import Icons from "../components/Icons";
 
 const AboutPage = () => {
   return (
-    <div className="container mx-auto px-4 pt-10">
+    <div className=" mx-auto  pt-8">
       <OurStorySection />
       <StatsSection />
       <TeamSection />

@@ -52,12 +52,10 @@ const SignUp = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-white pt-20">
-      {/* الصورة الجانبية */}
       <div className="lg:w-1/2 flex justify-center items-start p-8 relative top-[-150px]">
         <img src={signupVisual} alt="Visual" className="w-[800px] h-auto" />
       </div>
 
-      {/* النموذج */}
       <div className="lg:w-1/2 flex items-center justify-center p-8 relative top-[-120px]">
         <form
           onSubmit={handleSubmit(submitForm)}
@@ -110,7 +108,11 @@ const SignUp = () => {
             type="button"
             className="w-full border border-gray-400 py-2 rounded-md mt-3 flex items-center justify-center gap-2 bg-[#f9f9f9] hover:bg-[#f1f1f1] transition"
           >
-            <img src="/images/Icon-Google.png" alt="Google" className="w-5 h-5" />
+            <img
+              src="/images/Icon-Google.png"
+              alt="Google"
+              className="w-5 h-5"
+            />
             Sign up with Google
           </button>
 
