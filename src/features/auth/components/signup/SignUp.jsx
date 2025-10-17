@@ -1,25 +1,23 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
-
-import React from "react";
-import { Link } from "react-router-dom";
 import signupVisual from "/src/assets/SideImage.png";
 
 const SignUp = () => {
-  const schema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
+  // التحقق من الحقول
+  const schema = yup.object({
+    name: yup.string().required("Please enter your name"),
+    email: yup.string().email("Email not valid").required("Email is required"),
     password: yup
       .string()
-      .matches(
-        /^[A-Za-z0-9]{8,}$/,
-        "Password must contain only letters and numbers"
-      )
+      .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
   });
 
@@ -31,105 +29,93 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate();
-  const onSubmit = async (data) => {
+  const submitForm = async (data) => {
+    setLoading(true);
     try {
-      const response = await axios.post(
-        "https://api.escuelajs.co/api/v1/users",
-        {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-          avatar: "https://i.imgur.com/5cLDeiM.png",
-        }
-      );
+      const res = await axios.post("https://api.escuelajs.co/api/v1/users", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        avatar: "https://i.imgur.com/5cLDeiM.png",
+      });
 
-      localStorage.setItem("user", JSON.stringify(response.data));
-      toast.success("Account created!");
+      localStorage.setItem("user", JSON.stringify(res.data));
+      toast.success("Account created successfully!");
       navigate("/login");
-    } catch (error) {
-      toast.error("Registration failed");
-      console.error(
-        "تفاصيل الخطأ:",
-        error.response?.data?.message || error.message
-      );
+    } catch (err) {
+      console.log("Error creating account:", err);
+      toast.error("Something went wrong, try again");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-white pt-20 bd-8">
-      <div className="lg:w-1/2 flex items-start justify-start p-8 relative top-[-175px]">
-        <img
-          src={signupVisual}
-          alt="Shopping Visual"
-          className="w-[900px] h-auto"
-        />
+    <div className="flex flex-col lg:flex-row min-h-screen bg-white pt-20">
+      {/* الصورة الجانبية */}
+      <div className="lg:w-1/2 flex justify-center items-start p-8 relative top-[-150px]">
+        <img src={signupVisual} alt="Visual" className="w-[800px] h-auto" />
       </div>
 
-      <div className="lg:w-1/2 flex items-center justify-center p-8 relative top-[-140px] mb-2 ">
+      {/* النموذج */}
+      <div className="lg:w-1/2 flex items-center justify-center p-8 relative top-[-120px]">
         <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-full max-w-[380px] text-left"
+          onSubmit={handleSubmit(submitForm)}
+          className="w-full max-w-[400px]"
         >
-          <div className="mb-6">
-            <h2 className="text-[36px] leading-[30px] tracking-[0.5px] font-medium font-inter mb-2">
-              Create an account
-            </h2>
-            <p className="text-[16px] leading-[24px] font-normal font-poppins text-gray-500 mb-6">
-              Enter your details below
-            </p>
-          </div>
+          <h2 className="text-3xl font-medium mb-2">Create an account</h2>
+          <p className="text-gray-500 mb-6">Enter your info below</p>
 
           <input
             {...register("name")}
             type="text"
             placeholder="Name"
-            className="mb-4 w-full px-0 py-2 border-b border-gray-400 focus:outline-none focus:border-black bg-white"
+            className="w-full bg-[#fafafa] border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
           />
           {errors.name && (
-            <p className="text-red-500 text-sm mb-2">{errors.name.message}</p>
+            <p className="text-red-500 text-sm">{errors.name.message}</p>
           )}
 
           <input
             {...register("email")}
             type="email"
-            placeholder="Email or Phone Number"
-            className="mb-4 w-full px-0 py-2 border-b border-gray-400 focus:outline-none focus:border-black bg-white"
+            placeholder="Email"
+            className="w-full bg-[#fafafa] border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mb-2">{errors.email.message}</p>
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
           )}
 
           <input
             {...register("password")}
             type="password"
             placeholder="Password"
-            className="mb-4 w-full px-0 py-2 border-b border-gray-400 focus:outline-none focus:border-black bg-white"
+            className="w-full bg-[#fafafa] border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
           />
           {errors.password && (
-            <p className="text-red-500 text-sm mb-2">
-              {errors.password.message}
-            </p>
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
           )}
 
           <button
             type="submit"
-            className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 text-sm mb-4"
+            disabled={loading}
+            className={`w-full bg-red-500 text-white py-2 rounded-md mt-4 ${
+              loading ? "opacity-60 cursor-not-allowed" : "hover:bg-red-600"
+            }`}
           >
-            Create Account
+            {loading ? "Creating..." : "Create Account"}
           </button>
 
-          <button className="w-full border border-gray-400 py-2 rounded text-sm flex items-center justify-center gap-2 bg-white text-black">
-            <img
-              src="\imges\Icon-Google.png"
-              alt="Google"
-              className="w-5 h-5"
-            />
+          <button
+            type="button"
+            className="w-full border border-gray-400 py-2 rounded-md mt-3 flex items-center justify-center gap-2 bg-[#f9f9f9] hover:bg-[#f1f1f1] transition"
+          >
+            <img src="/images/Icon-Google.png" alt="Google" className="w-5 h-5" />
             Sign up with Google
           </button>
 
           <p className="text-sm text-center mt-6">
-            Already have account?{" "}
+            Already have an account?{" "}
             <Link to="/login" className="underline text-black">
               Log in
             </Link>
