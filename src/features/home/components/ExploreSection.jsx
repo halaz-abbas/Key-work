@@ -63,7 +63,7 @@ function ExploreSection() {
     <Box my={6} sx={{ background: "#fff", borderRadius: 2, p: 4, boxShadow: 2 }}>
       
       <Box display="flex" alignItems="center" mb={2} gap={1}>
-        <Box sx={{ width: 10, height: 10, bgcolor: "error.main", borderRadius: 1 }} />
+        <Box sx={{ width: 13, height: 20, bgcolor: "error.main",  }} />
         <Typography variant="caption" color="error" fontWeight="bold">
           Today's
         </Typography>

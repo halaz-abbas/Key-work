@@ -46,8 +46,8 @@ const BestSelling = () => {
           <Box display="flex" alignItems="center" mb={0.5} gap={1}>
             <Box
               sx={{
-                width: 10,
-                height: 10,
+                width: 13,
+                height: 20,
                 bgcolor: "error.main",
                 borderRadius: 0.5,
               }}

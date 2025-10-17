@@ -93,8 +93,8 @@ export default function NewArrival() {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
           <Box
             sx={{
-              width: 10,
-              height: 10,
+              width: 13,
+              height: 20,
               backgroundColor: "red",
               borderRadius: "2px",
             }}

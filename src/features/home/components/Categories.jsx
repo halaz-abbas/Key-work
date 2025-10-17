@@ -72,7 +72,7 @@ const Categories = () => {
       <div className="relative mb-6">
         <div className="text-left">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-red-600 rounded-sm"></div>
+            <div className="w-3 h-5 bg-red-600 rounded-sm"></div>
             <span className="text-[12px] text-red-600 font-medium uppercase tracking-wide">
               Categories
             </span>

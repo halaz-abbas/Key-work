@@ -89,10 +89,10 @@ function FlashSales() {
       <Box display="flex" alignItems="center" mb={1}>
         <Box
           sx={{
-            width: 10,
-            height: 10,
+            width: 13,
+            height: 20,
             bgcolor: "error.main",
-            borderRadius: 1,
+            borderRadius: 0,
             mr: 1,
           }}
         />
