@@ -1,29 +1,66 @@
-import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Menu, X, Search } from "lucide-react";
 import { useCartStore } from "../../../features/cart/store/cartStore";
 import { useWishlistStore } from "../../../features/wishlist/store/wishlistStore";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import img from "../../../assets/wishlist (2).png";
-import img2 from "../../../assets/search (1).png";
 import img3 from "../../../assets/Cart1@2x.png";
 
 const Navbar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const { cart } = useCartStore();
   const wishlistCount = useWishlistStore(
     (state) => state.wishlist?.length || 0
   );
   const location = useLocation();
+  const navigate = useNavigate();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const hideIconsPages = ["/login", "/signup"];
   const shouldHideIcons = hideIconsPages.includes(location.pathname);
 
+  // Fetch search results (mobile and desktop)
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchQuery.length < 2) {
+        setSearchResults([]);
+        return;
+      }
+
+      const fetchResults = async () => {
+        try {
+          const res = await fetch("https://api.escuelajs.co/api/v1/products");
+          const data = await res.json();
+          const filtered = data.filter((item) =>
+            item.title.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+          setSearchResults(filtered.slice(0, 5));
+        } catch (err) {
+          console.error("Search error:", err);
+        }
+      };
+
+      fetchResults();
+    }, 400);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchQuery]);
+
+  const handleNavigate = (id) => {
+    navigate(`/products/${id}`);
+    setSearchQuery("");
+    setSearchResults([]);
+    setShowMobileSearch(false);
+  };
+
   return (
     <>
       <div className="sticky top-0 z-50 w-full">
+        {/* Top Banner */}
         <div className="bg-black text-white w-full">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-center items-center h-10 sm:h-12 gap-1 sm:gap-2">
@@ -31,23 +68,12 @@ const Navbar = () => {
                 Summer Sale For All Swim Suits And Free Express Delivery - OFF
                 50%!
               </span>
-
               <Link
                 to="/products"
                 className="text-[10px] sm:text-xs md:text-sm font-poppins font-semibold underline hover:text-gray-300 transition-colors whitespace-nowrap"
               >
                 Shop Now
               </Link>
-
-              <select className="bg-black text-white text-[12px] pl-3 sm:text-xs md:text-sm font-poppins border-none outline-none cursor-pointer ml-2">
-                <option value="en">English</option>
-              </select>
-
-              <img
-                src="./src/assets/down-arrow.png"
-                alt="Arrow"
-                className="ml-1 h-2 w-3 sm:h-2 sm:w-3"
-              />
             </div>
           </div>
         </div>
@@ -93,39 +119,59 @@ const Navbar = () => {
                 </Link>
               </div>
 
-              {/* Search + Icons */}
-              <div className="flex items-center space-x-2 sm:space-x-4">
-                {/* Search */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search.. (press /)"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-28 sm:w-48 md:w-64 px-2 sm:px-3 md:px-4 py-1 sm:py-2 pr-8 text-xs sm:text-sm bg-[#F5F5F5] font-poppins border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all"
-                  />
-                  <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
-                    <img
-                      src={img2}
-                     
-                      className="h-7 w-7 sm:h-5 sm:w-4"
-                    />
+              {/* Desktop Search Input */}
+              <div className="hidden md:block relative">
+                <input
+                  type="text"
+                  placeholder="Search.. (press /)"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-64 px-3 py-2 text-sm bg-[#F5F5F5] font-poppins border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all"
+                />
+                {searchQuery && searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 w-full bg-white border border-gray-300 shadow-md mt-1 z-50">
+                    {searchResults.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => handleNavigate(item.id)}
+                        className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 flex items-center gap-3"
+                      >
+                        <img
+                          src={item.image || "/placeholder.png"}
+                          className="w-10 h-10 object-cover rounded"
+                        />
+                        <div className="truncate">
+                          <div className="font-semibold">{item.title}</div>
+                          <div className="text-gray-500 text-xs">
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
+                )}
+              </div>
+
+              {/* Icons + Mobile Search Icon */}
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                {/* Mobile Search Icon */}
+                <div className="md:hidden flex items-center relative">
+                  <button
+                    onClick={() => setShowMobileSearch((prev) => !prev)}
+                    className="p-1 rounded bg-gray-200"
+                  >
+                    <Search size={20} />
+                  </button>
                 </div>
 
+                {/* Wishlist */}
                 {!shouldHideIcons && (
                   <>
-                    {/* Wishlist */}
                     <Link
                       to="/wishlist"
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black bg-transparent"
                     >
-                      <img
-                        src={img}
-                       
-                        className="h-5 w-5 sm:h-6 sm:w-6"
-                        style={{ background: "transparent" }}
-                      />
+                      <img src={img} className="h-5 w-5 sm:h-6 sm:w-6" />
                       {wishlistCount > 0 && (
                         <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] sm:text-xs rounded-full px-1">
                           {wishlistCount}
@@ -138,11 +184,7 @@ const Navbar = () => {
                       to="/cart"
                       className="relative p-1 sm:p-2 text-gray-600 hover:text-black"
                     >
-                      <img
-                        src={img3}
-                       
-                        className="h-5 w-5 sm:h-6 sm:w-6"
-                      />
+                      <img src={img3} className="h-5 w-5 sm:h-6 sm:w-6" />
                       {cart && cart.length > 0 && (
                         <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] sm:text-xs rounded-full px-1">
                           {cart.length}
@@ -158,74 +200,10 @@ const Navbar = () => {
                     >
                       <PersonOutlineIcon style={{ fontSize: 25 }} />
                     </button>
-
-                    {showProfileMenu && (
-                      <div className="absolute top-14 right-4 w-56 bg-gradient-to-b from-gray-700 to-gray-400 text-white rounded-lg shadow-lg p-4 z-50 space-y-3 font-poppins text-sm">
-                        <Link
-                          to="/account"
-                          className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                        >
-                          <img
-                            src="\imges\user.png"
-                            alt="Account"
-                            className="w-5 h-5"
-                          />
-                          <span>Manage My Account</span>
-                        </Link>
-                        <Link
-                          to="/orders"
-                          className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                        >
-                          <img
-                            src="\imges\Group.png"
-                            alt="Orders"
-                            className="w-5 h-5"
-                          />
-                          <span>My Order</span>
-                        </Link>
-                        <Link
-                          to="/cancellations"
-                          className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                        >
-                          <img
-                            src="\imges\icon-cancel.png"
-                            alt="Cancellations"
-                            className="w-5 h-5"
-                          />
-                          <span>My Cancellations</span>
-                        </Link>
-                        <Link
-                          to="/reviews"
-                          className="flex items-center gap-3 text-white hover:text-white/80 transition-colors"
-                        >
-                          <img
-                            src="\imges\Icon-Reviews.png"
-                            alt="Reviews"
-                            className="w-5 h-5"
-                          />
-                          <span>My Reviews</span>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            localStorage.removeItem("user");
-                            setShowProfileMenu(false);
-                            navigate("/login");
-                          }}
-                          className="flex items-center gap-3 w-full text-left text-white hover:text-white/80 transition-colors bg-transparent p-0"
-                        >
-                          <img
-                            src="\imges\Vector (1).png"
-                            alt="Logout"
-                            className="w-5 h-5"
-                          />
-                          <span>Logout</span>
-                        </button>
-                      </div>
-                    )}
                   </>
                 )}
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Menu */}
                 <div className="md:hidden flex items-center">
                   <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -242,6 +220,44 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* Mobile Search Input + Popup */}
+          {showMobileSearch && (
+            <div className="md:hidden w-full px-4 py-2 bg-white border-b relative">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-3 py-2 text-sm bg-[#F5F5F5] font-poppins border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all"
+              />
+
+              {/* Search Popup */}
+              {searchQuery && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-300 shadow-md mt-1 z-50">
+                  {searchResults.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() => handleNavigate(item.id)}
+                      className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 flex items-center gap-3"
+                    >
+                      <img
+                        src={item.image || "/placeholder.png"}
+                        className="w-10 h-10 object-cover rounded"
+                      />
+                      <div className="truncate">
+                        <div className="font-semibold">{item.title}</div>
+                        <div className="text-gray-500 text-xs">
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Mobile Menu Links */}
           {isMenuOpen && (
             <div className="md:hidden bg-white border-t px-3 py-3 space-y-3">
               <Link
