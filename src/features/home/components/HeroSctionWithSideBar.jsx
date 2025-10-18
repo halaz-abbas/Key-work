@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronRight, Menu } from "lucide-react";
@@ -115,7 +114,7 @@ const HeroBanner = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden shadow-md rounded-2xl w-full pt-0">
+    <section className="relative overflow-hidden shadow-md  w-full pt-0">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -125,7 +124,10 @@ const HeroBanner = () => {
       >
         {slides.map((slide, idx) => (
           <SwiperSlide key={idx}>
-            <div className="relative bg-black flex flex-col lg:flex-row items-center justify-between gap-4 h-[360px] sm:h-[430px] md:h-[480px] lg:h-[500px] pt-0 px-2 sm:px-6 md:px-8 pb-2">
+            <div
+              className="relative bg-black flex flex-col lg:flex-row items-center justify-between gap-4 h-[360px] 
+            sm:h-[430px] md:h-[480px] lg:h-[500px] pt-0 px-2 sm:px-6 md:px-8 pb-2"
+            >
               <div className="flex-1 text-center lg:text-left space-y-3 z-10 h-full flex flex-col justify-center items-center lg:items-start">
                 <div className="mb-1">
                   <span className="text-sm sm:text-base font-poppins text-gray-200">
